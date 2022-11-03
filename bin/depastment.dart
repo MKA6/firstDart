@@ -1,7 +1,11 @@
-class Depastment {
-  String name;
-  String maneger;
-  String isMale;
-
-  Depastment(this.name, this.maneger, this.isMale);
+class Department {
+  String? name;
+  String? manager;
+  int? studentsCount;
+  Department(this.name, this.manager, this.studentsCount);
+  Department.fromMap(Map map) {
+    name = map['name'];
+    manager = map['manager'];
+    studentsCount = map['count'];
+  }
 }

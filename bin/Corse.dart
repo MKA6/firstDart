@@ -1,7 +1,11 @@
-class Corse {
-  String name;
-  double mark;
-  int hours;
-
-  Corse(this.name, this.mark, this.hours);
+class Course {
+  String? courseName;
+  int? courseHours;
+  int? courseMark;
+  Course(this.courseName, this.courseHours, this.courseMark);
+  Course.fromMap(Map map) {
+    courseName = map['name'];
+    courseHours = map['hours'];
+    courseMark = map['mark'];
+  }
 }

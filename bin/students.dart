@@ -3,50 +3,41 @@ import 'dart:ffi';
 import 'Corse.dart';
 import 'depastment.dart';
 
-class Students {
-  int? stuId;
-  String? sutName;
+class Student {
+  int? id;
+  String? name;
   bool? isMale;
-  Map<String, double>? corseName;
-  List<Corse>? corse;
-  Depastment? dep;
-
-  // Students.stud(Map map) {
-  //   stuId = map['id'];
-  //   sutName = map['Name'];
-  //   isMale = map['inMale'];
-  //   corse = map[Corse('', 5.2, 5)];
-  //   dep = map[Depastment('mm', '', '')];
-  // }
-  Students.stud(Map map) {
-    stuId = map['id'];
-    sutName = map['Name'];
+  List<Course>? courses;
+  Department? department;
+  Student.fromMap(Map<String, dynamic> map) {
+    id = map['id'];
+    name = map['name'];
     isMale = map['isMale'];
-    corse = (map['Corse'] as List).map((e) {
-      return Corse(e['name'], e['mark'], e['hours']);
+    courses = (map['courses'] as List).map((e) {
+      return Course.fromMap(e);
     }).toList();
+    department = Department.fromMap(map['department']);
   }
-// التحويل من ماب ل ابجيكت
-  Students(this.stuId, this.sutName, this.isMale, this.corseName, this.corse,
-      this.dep);
 
-  double avg() {
+  Student(this.id, this.name, this.isMale, this.courses, this.department);
+  // insertCourse(String name, int hours, double mark) {
+  //   if (hours > 0 && mark >= 40) {
+  //     courses?.add(Course(name, hours, mark));
+  //   } else {
+  //     print('you have to insert valid data');
+  //   }
+  // }
+
+  double calculateAvg() {
     double sum = 0;
-    double avg = 0;
-    corse?.forEach((element) {
-      sum += element.mark * element.hours;
-      avg += element.hours * sum;
+    double hoursCount = 0;
+    courses?.forEach((element) {
+      sum += (element.courseMark ?? 1) * (element.courseHours ?? 2);
+      hoursCount += element.courseHours!;
     });
-    return sum / avg;
+    return sum / hoursCount;
+    print('hello');
   }
 
-  void insert(String name, double mark, int hours) {
-    if (mark >= 40 && hours > 0) {
-      corse?.add(Corse(name, mark, hours));
-    } else {
-      print("error");
-    }
-  }
-
-  dummyFunction({String x = '', double y = 0, bool z = true}) {}
+  dummyFunction(String x, String name, {double y = 0, bool z = true}) {}
 }
