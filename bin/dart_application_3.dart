@@ -28,10 +28,10 @@ void main(List<String> arguments) {
 
   Students students = Students.stud({});
 
-  Map map = {
-    'id': 1,
-    'Name' :"mohammed"
-    'isMale': true ,
+  // Map map = {
+  //   'id': 1,
+  //   'Name' :"mohammed"
+  //   'isMale': true ,
 
-  };
+  // };
 }
