@@ -9,6 +9,7 @@ class Student {
   bool? isMale;
   List<Course>? courses;
   Department? department;
+
   Student.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     name = map['name'];
